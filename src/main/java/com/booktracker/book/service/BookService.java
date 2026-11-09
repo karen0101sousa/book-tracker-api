@@ -1,7 +1,6 @@
 package com.booktracker.book.service;
 
 import com.booktracker.book.Book;
-import com.booktracker.book.dto.BookRequest;
 import com.booktracker.book.repository.BookRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +13,8 @@ public class BookService {
         this.repository = repository;
     }
 
-    public Book registerBook(BookRequest request) {
-        Book book = new Book(
-                request.getTitle(),
-                request.getAuthor()
-        );
+    public Book registerBook(String title, String author) {
+        Book book = new Book(title, author);
 
         return repository.save(book);
     }

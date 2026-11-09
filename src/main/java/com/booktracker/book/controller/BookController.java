@@ -25,10 +25,14 @@ public class BookController {
     public ResponseEntity<Book> registerBook(
             @Valid @RequestBody BookRequest request) {
 
-        Book book = service.registerBook(request);
+        Book book = service.registerBook(
+                request.getTitle(),
+                request.getAuthor()
+        );
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(book);
     }
+
 }
