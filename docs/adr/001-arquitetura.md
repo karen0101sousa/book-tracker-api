@@ -86,13 +86,22 @@ Embora a solução não implemente todos os princípios de uma Clean Architectur
 rigorosa, ela oferece uma base organizada para o projeto, sem introduzir 
 complexidade arquitetural desnecessária ao seu escopo atual.
 
-## 6. Padrão de projeto
+## 6. Padrão de projeto — Repository
 
-O projeto utiliza o padrão Repository para organizar o acesso
-aos dados e separar as operações de persistência da lógica
-de negócio.
+Foi adotado o padrão Repository para organizar e abstrair o acesso
+aos dados da aplicação.
 
-As interfaces `BookRepository` e `ReadingRepository` estendem
-`JpaRepository`, do Spring Data JPA, disponibilizando operações
-de persistência sem exigir que os serviços implementem diretamente
-as consultas ao banco de dados.
+As interfaces `BookRepository` e `ReadingRepository` representam
+as operações de persistência das funcionalidades de livros e leituras,
+respectivamente.
+
+A implementação utiliza o Spring Data JPA, por meio da extensão
+de `JpaRepository`, que disponibiliza operações comuns de consulta
+e persistência sem exigir a implementação manual dessas operações.
+
+A escolha desse padrão contribui para a separação de responsabilidades,
+reduz o código repetitivo e mantém as operações de acesso aos dados
+organizadas por funcionalidade.
+
+**Limitação:** os repositórios estendem interfaces do Spring Data JPA,
+mantendo uma dependência da aplicação em relação a esse framework.
